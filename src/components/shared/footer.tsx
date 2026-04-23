@@ -26,7 +26,6 @@ const footerLinks = {
     icon: taskIcons[task.key] || LayoutGrid,
   })),
   company: [
-    { name: 'About', href: '/about' },
     { name: 'Team', href: '/team' },
     { name: 'Careers', href: '/careers' },
     { name: 'Blog', href: '/blog' },
