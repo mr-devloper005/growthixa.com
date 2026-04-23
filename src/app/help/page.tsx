@@ -1,52 +1,83 @@
 ﻿import Link from 'next/link'
-import { PageShell } from '@/components/shared/page-shell'
-import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { mockFaqs } from '@/data/mock-data'
+import { DistributionPageFrame } from '@/components/distribution/distribution-page-frame'
+import { HelpFaqPanel } from './help-faq-panel'
 
-const topics = [
-  { title: 'Getting Started', description: 'Create your account and publish your first post.' },
-  { title: 'Bookmarks & Collections', description: 'Save links, organize folders, and share collections.' },
-  { title: 'Listings & Ads', description: 'Manage your business listings and classifieds.' },
-]
+const topicCards = [
+  {
+    title: 'Guest posts & syndication',
+    body: 'Pitch structure, disclosure rules, and how we schedule syndicated placements across partner surfaces.',
+  },
+  {
+    title: 'Press & announcements',
+    body: 'Wire-style updates, embargo handling, and how we coordinate quotes with your comms team.',
+  },
+  {
+    title: 'Search & archive',
+    body: 'Finding older distribution stories, keyword tips, and when to request a manual lookup from the desk.',
+  },
+  {
+    title: 'Compliance & privacy',
+    body: 'Data we retain for submissions, retention windows, and how to exercise privacy rights tied to outreach.',
+  },
+] as const
 
 export default function HelpPage() {
   return (
-    <PageShell
-      title="Help Center"
-      description="Find answers, guides, and best practices."
+    <DistributionPageFrame
+      title="Help & support"
+      description="Guides for guest authors, syndication partners, and newsrooms working with our distribution desk."
       actions={
-        <Button asChild>
-          <Link href="/contact">Contact Support</Link>
-        </Button>
+        <Link
+          href="/contact"
+          className="inline-flex h-11 items-center justify-center border border-white/40 bg-white px-5 text-sm font-semibold text-[#6b0000] hover:bg-white/95"
+        >
+          Contact distribution
+        </Link>
       }
     >
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="grid gap-6 md:grid-cols-2">
-          {topics.map((topic) => (
-            <Card key={topic.title} className="border-border bg-card transition-transform hover:-translate-y-1">
-              <CardContent className="p-6">
-                <h2 className="text-lg font-semibold text-foreground">{topic.title}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{topic.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900">
+            <span className="inline-block h-4 w-0.5 bg-[#c62828]" aria-hidden />
+            Topic guides
+          </h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {topicCards.map((topic) => (
+              <div
+                key={topic.title}
+                className="border border-neutral-200 bg-neutral-50/50 p-5 transition hover:border-[#6b0000]/35"
+              >
+                <h3 className="text-sm font-semibold text-neutral-900">{topic.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-600">{topic.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 border border-neutral-200 px-5 py-4 text-sm text-neutral-600">
+            <p className="font-medium text-neutral-900">Still stuck?</p>
+            <p className="mt-2">
+              Browse{' '}
+              <Link href="/updates" className="font-medium text-[#6b0000] hover:underline">
+                published guest posts
+              </Link>{' '}
+              for tone examples, or read{' '}
+              <Link href="/terms" className="font-medium text-[#6b0000] hover:underline">
+                terms & guidelines
+              </Link>{' '}
+              before writing in.
+            </p>
+          </div>
         </div>
-        <Card className="border-border bg-card">
-          <CardContent className="p-6">
-            <h3 className="text-lg font-semibold text-foreground">FAQ</h3>
-            <Accordion type="single" collapsible className="mt-4">
-              {mockFaqs.map((faq) => (
-                <AccordionItem key={faq.id} value={faq.id}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-        </Card>
+        <div>
+          <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-900">
+            <span className="inline-block h-4 w-0.5 bg-[#c62828]" aria-hidden />
+            Frequently asked
+          </h2>
+          <p className="mt-3 text-sm text-neutral-600">Answers focused on distribution, guest posts, and partner workflows.</p>
+          <div className="mt-6">
+            <HelpFaqPanel />
+          </div>
+        </div>
       </div>
-    </PageShell>
+    </DistributionPageFrame>
   )
 }

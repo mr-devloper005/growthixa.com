@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'qpzsrstilh',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Growthixa',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Independent media updates',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Guest posts & media distribution',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A simple newsroom-style publication for announcements, coverage, and media updates on Growthixa.',
+    'A guest publishing and media distribution desk for syndicated stories, press outreach, and editorial placements—without noisy feeds or stock imagery.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'growthixa.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://growthixa.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',
